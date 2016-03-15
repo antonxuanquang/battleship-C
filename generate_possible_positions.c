@@ -11,18 +11,20 @@ void generate_possible_positions(
 	flag = false;
 	if (column - length >= 0) {
 		for (counter = column - length; counter >= 0; counter--) {
+
 			if (!(board[row][column] == '.')) {
 				flag = true;
 			}
 		}
 		new_coordinate[0] = (char) ((int) start_position[0] - length);
 		new_coordinate[1] = start_position[1];
-		if (!flag) strcat(possible_positions, new_coordinate);
+		if (flag) strcat(possible_positions, new_coordinate);
 	}
 
 	//right
 	flag = false;
 	if (column + length < 10) {
+		printf("%d\n", (board[row][column] == '.'));
 		for (counter = column; counter < column + length; counter++) {
 			if (!(board[row][column] == '.')) {
 				flag = true;
@@ -30,7 +32,7 @@ void generate_possible_positions(
 		}
 		new_coordinate[0] = (char) ((int) start_position[0] + length);
 		new_coordinate[1] = start_position[1];
-		if (!flag) strcat(possible_positions, new_coordinate);
+		if (flag) strcat(possible_positions, new_coordinate);
 	}
 
 	//up case
@@ -43,7 +45,7 @@ void generate_possible_positions(
 		}
 		new_coordinate[0] = start_position[0];
 		new_coordinate[1] = (char) ((int) start_position[1] - length);		
-		if (!flag) strcat(possible_positions, new_coordinate);
+		if (flag) strcat(possible_positions, new_coordinate);
 	}
 
 	//right
@@ -56,6 +58,6 @@ void generate_possible_positions(
 		}
 		new_coordinate[0] = start_position[0];
 		new_coordinate[1] = (char) ((int) start_position[1] + length);
-		if (!flag) strcat(possible_positions, new_coordinate);
+		if (flag) strcat(possible_positions, new_coordinate);
 	}
 }

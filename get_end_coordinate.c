@@ -17,7 +17,7 @@ void get_end_coordinate(char *possible_positions, char *end_position, Boolean co
 	if (computer_turn) 	option = rand() % num_choices;
 	else 				option = prompt_for_end_possition();
 	
-	if (option > 0 && option < num_choices) {
+	if (option > 0 && option <= num_choices) {
 		end_position[0] = possible_positions[(option - 1) * 2];
 		end_position[1] = possible_positions[(option - 1) * 2 + 1];
 	}
