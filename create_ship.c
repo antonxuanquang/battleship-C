@@ -1,6 +1,11 @@
 #include "put_ship_on_board.c"
+#include "generate_possible_positions.c"
+#include "get_end_coordinate.c"
+
 
 void put_ship_on_board(char[], char[], char, char[10][10]);
+void generate_possible_positions(char *possible_positions, char *start_position, int length, char board[10][10]);
+void get_end_coordinate(char *possible_positions, char *end_position, Boolean computer_turn);
 
 void create_ship(char board[10][10], Boolean computer_turn) {
 	char type[] = {'A', 'B', 'C', 'S', 'D'};
@@ -11,9 +16,6 @@ void create_ship(char board[10][10], Boolean computer_turn) {
 	int length;
 	char letter;
 
-	//debug
-	char end[] = "B2";
-
 	for (i = 0; i < 5; i++) {
 		letter = type[i];
 		switch (letter) {
@@ -23,15 +25,19 @@ void create_ship(char board[10][10], Boolean computer_turn) {
 			case 'S': length = 2; break;
 			case 'D': length = 2; break;
 		}
-		// do {
+		do {
 			memset(possible_positions,'\0', 8);
+			memset(end_position, '\0', 2);
 			get_coordinate(start_position, 2, computer_turn);
+			printf("%s %s\n", "The input is: ", start_position);
 			generate_possible_positions(
 				possible_positions, start_position, length - 1, board);
-		// 	end_position = get_end_coordinate(possible_positions, computer_turn);
-		// } while (end_position != '\0');
-
-		// put_ship_on_board(start_position, end, letter, board);
+			printf("%s %s\n", "New possible possible_positions is: ", possible_positions);
+			get_end_coordinate(possible_positions, end_position, computer_turn);
+			printf("New end position is %s\n", end_position);
+		} while (end_position[0] == '\0');
+		
+		put_ship_on_board(start_position, end_position, letter, board);
 
 		if (!computer_turn) {
 			show_board(board, board);
