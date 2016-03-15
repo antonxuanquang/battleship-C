@@ -7,6 +7,7 @@
 #include "create_ship.c"
 #include "get_coordinate.c"
 #include "shoot_a_board.c"
+#include "generate_possible_positions.c"
 #include "show_board.c"
 #include "clear_screen.c"
 #include "upper_case.c"
@@ -37,12 +38,12 @@ int main() {
 		}
 
 		computer_turn = !computer_turn;
-		show_board(player_board, computer_board);
-		clear_screen();
+		if (!computer_turn) show_board(player_board, computer_board);
+		// clear_screen();
 	} while (!sink);
 	
 
-	if (!computer_turn) 	printf("%s\n", "User won");
+	if (computer_turn) 		printf("%s\n", "User won");
 	else 					printf("%s\n", "Computer won");
 
 	show_board(player_board, computer_board);
