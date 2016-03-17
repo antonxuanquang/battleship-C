@@ -29,6 +29,7 @@ int main() {
 	create_ship(computer_board, !computer_turn);
 
 	do {
+		if (!computer_turn) show_board(player_board, computer_board);
 		get_coordinate(shoot, 2, computer_turn);
 		if (computer_turn) {
 			sink = shoot_a_board(shoot, player_board);
@@ -37,7 +38,6 @@ int main() {
 		}
 
 		computer_turn = !computer_turn;
-		if (!computer_turn) show_board(player_board, computer_board);
 		clear_screen();
 	} while (!sink);
 	

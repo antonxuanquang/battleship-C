@@ -7,13 +7,10 @@ void generate_possible_positions(
 	int counter;
 	Boolean flag;
 
-	show_board(board, board);
-
 	//left case
 	flag = true;
 	if (column - length >= 0) {
-		for (counter = column; counter > column - length; counter--) {
-			printf("left %c\n", board[row][column]);
+		for (counter = column; counter >= column - length; counter--) {
 			if (!(board[row][counter] == '.')) {
 				flag = false;
 				break;
@@ -27,8 +24,7 @@ void generate_possible_positions(
 	//right
 	flag = true;
 	if (column + length < 10) {
-		for (counter = column; counter < column + length; counter++) {
-			printf("right %c\n", board[row][column]);
+		for (counter = column; counter <= column + length; counter++) {
 			if (!(board[row][counter] == '.')) {
 				flag = false;
 				break;
@@ -42,8 +38,7 @@ void generate_possible_positions(
 	//up case
 	flag = true;
 	if (row - length >= 0) {
-		for (counter = row; counter > row - length; counter--) {
-			printf("up %c\n", board[row][column]);
+		for (counter = row; counter >= row - length; counter--) {
 			if (!(board[counter][column] == '.')) {
 				flag = false;
 				break;
@@ -57,8 +52,7 @@ void generate_possible_positions(
 	//down
 	flag = true;
 	if (row + length < 10) {
-		for (counter = row; counter < row + length; counter++) {
-			printf("down %c\n", board[row][column]);
+		for (counter = row; counter <= row + length; counter++) {
 			if (!(board[counter][column] == '.')) {
 				flag = false;
 				break;
@@ -68,4 +62,6 @@ void generate_possible_positions(
 		new_coordinate[1] = (char) ((int) start_position[1] + length);
 		if (flag) strcat(possible_positions, new_coordinate);
 	}
+
+	free(new_coordinate);
 }

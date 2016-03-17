@@ -6,6 +6,11 @@ void get_end_coordinate(char *possible_positions, char *end_position, Boolean co
 	int counter;
 	char *choice = (char*) malloc(2);
 
+	if (num_choices == 0) {
+		printf("Can't put this ship on board, please try again!\n");
+		return;
+	}
+
 	printf(">0: Retry\n");
 	for (counter = 0; counter < num_choices; counter++) {
 		memset(choice, '\0', 2);
