@@ -7,13 +7,16 @@ void generate_possible_positions(
 	int counter;
 	Boolean flag;
 
-	//left case
-	flag = false;
-	if (column - length >= 0) {
-		for (counter = column - length; counter >= 0; counter--) {
+	show_board(board, board);
 
-			if (!(board[row][column] == '.')) {
-				flag = true;
+	//left case
+	flag = true;
+	if (column - length >= 0) {
+		for (counter = column; counter > column - length; counter--) {
+			printf("left %c\n", board[row][column]);
+			if (!(board[row][counter] == '.')) {
+				flag = false;
+				break;
 			}
 		}
 		new_coordinate[0] = (char) ((int) start_position[0] - length);
@@ -22,12 +25,13 @@ void generate_possible_positions(
 	}
 
 	//right
-	flag = false;
+	flag = true;
 	if (column + length < 10) {
-		printf("%d\n", (board[row][column] == '.'));
 		for (counter = column; counter < column + length; counter++) {
-			if (!(board[row][column] == '.')) {
-				flag = true;
+			printf("right %c\n", board[row][column]);
+			if (!(board[row][counter] == '.')) {
+				flag = false;
+				break;
 			}
 		}
 		new_coordinate[0] = (char) ((int) start_position[0] + length);
@@ -36,11 +40,13 @@ void generate_possible_positions(
 	}
 
 	//up case
-	flag = false;
+	flag = true;
 	if (row - length >= 0) {
-		for (counter = row - length; counter >= 0; counter--) {
-			if (!(board[row][column] == '.')) {
-				flag = true;
+		for (counter = row; counter > row - length; counter--) {
+			printf("up %c\n", board[row][column]);
+			if (!(board[counter][column] == '.')) {
+				flag = false;
+				break;
 			}
 		}
 		new_coordinate[0] = start_position[0];
@@ -48,12 +54,14 @@ void generate_possible_positions(
 		if (flag) strcat(possible_positions, new_coordinate);
 	}
 
-	//right
-	flag = false;
+	//down
+	flag = true;
 	if (row + length < 10) {
 		for (counter = row; counter < row + length; counter++) {
-			if (!(board[row][column] == '.')) {
-				flag = true;
+			printf("down %c\n", board[row][column]);
+			if (!(board[counter][column] == '.')) {
+				flag = false;
+				break;
 			}
 		}
 		new_coordinate[0] = start_position[0];

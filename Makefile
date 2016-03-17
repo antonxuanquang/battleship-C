@@ -19,6 +19,7 @@ BACKUPS = *~
 #Rules
 $(EXE): $(OBJS)
 		$(CC) $(LFLAGS) -o $@ $(OBJS)
+		./battleship
 
 # Assemble any .c file into the object file
 .c.o:

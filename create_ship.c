@@ -29,12 +29,9 @@ void create_ship(char board[10][10], Boolean computer_turn) {
 			memset(possible_positions,'\0', 8);
 			memset(end_position, '\0', 2);
 			get_coordinate(start_position, 2, computer_turn);
-			printf("%s %s\n", "The input is: ", start_position);
 			generate_possible_positions(
-				possible_positions, start_position, length - 1, board);
-			printf("%s %s\n", "New possible possible_positions is: ", possible_positions);
+				possible_positions, start_position, length, board);
 			get_end_coordinate(possible_positions, end_position, computer_turn);
-			printf("New end position is %s\n", end_position);
 		} while (end_position[0] == '\0');
 		
 		put_ship_on_board(start_position, end_position, letter, board);
