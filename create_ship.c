@@ -32,6 +32,7 @@ void create_ship(char board[10][10], Boolean computer_turn) {
 			memset(possible_positions,'\0', 8);
 			memset(end_position, '\0', 2);
 			get_coordinate(start_position, 2, computer_turn);
+			printf("%s\n", start_position);
 			generate_possible_positions(
 				possible_positions, start_position, length - 1, board);
 			get_end_coordinate(possible_positions, end_position, computer_turn);
@@ -39,7 +40,7 @@ void create_ship(char board[10][10], Boolean computer_turn) {
 		
 		put_ship_on_board(start_position, end_position, letter, board);
 
-		clear_screen();
+		if (!computer_turn) clear_screen();
 	}
 
 	free(start_position);

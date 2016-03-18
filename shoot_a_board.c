@@ -16,8 +16,9 @@ Boolean shoot_it(char *shoot, char board[10][10]) {
 	char point = board[row][column];
 
 	if (upper_case(point)) {
-		board[row][column] = 'd';
-		printf("%s\n", "HIT");
+		char character = board[row][column];
+		board[row][column] = (char)(character + 32);
+		printf("%s\n", "HIT??????");
 		return true;
 	} else if (lower_case(point)) {
 		printf("%s\n", "Already HIT");
@@ -31,22 +32,21 @@ Boolean shoot_it(char *shoot, char board[10][10]) {
 Boolean check_sink(char board[10][10]) {
 	int row, column;
 	char sum_string[20];
+	memset(sum_string, '\0', 20);
 	for (row = 0; row < 10; row++) {
 		for (column = 0; column < 10; column++) {
 			char point = board[row][column];
-			if (point != '.' && point != 'X' && point != 'o') {
+			printf("%s\n", sum_string);
+			if (point != '.' && point != 'X' && point != 'o'
+				&& !strchr(sum_string, point)
+				&& upper_case(point)) {
 				int length = strlen(sum_string);
 				sum_string[length++] = point;
 				sum_string[length] = '\0';
 			}
 		}
 	}
-	return check_sink_rec(sum_string);
-}
-
-Boolean check_sink_rec(char *sum_string) {
-	if 		(sum_string[0] == '\0') 	return true;
-	else if (upper_case(sum_string[0])) return false;
-	else 								return check_sink_rec(sum_string + 1);
+	
+	return strlen(sum_string) < 5;
 }
 

@@ -1,15 +1,26 @@
-int prompt_for_end_possition();
+int prompt_for_end_possition(char *possible_positions, int num_choices);
 
 void get_end_coordinate(char *possible_positions, char *end_position, Boolean computer_turn) {
 	int num_choices = strlen(possible_positions) / 2;
 	int option;
-	int counter;
-	char *choice = (char*) malloc(2);
 
 	if (num_choices == 0) {
 		printf("Can't put this ship on board, please try again!\n");
 		return;
 	}
+
+	if (computer_turn) 	option = rand() % num_choices;
+	else 				option = prompt_for_end_possition(possible_positions, num_choices);
+	
+	if (option > 0 && option <= num_choices) {
+		end_position[0] = possible_positions[(option - 1) * 2];
+		end_position[1] = possible_positions[(option - 1) * 2 + 1];
+	}
+}
+
+int prompt_for_end_possition(char *possible_positions, int num_choices) {
+	char *choice = (char*) malloc(2);
+	int counter;
 
 	printf(">0: Retry\n");
 	for (counter = 0; counter < num_choices; counter++) {
@@ -19,18 +30,10 @@ void get_end_coordinate(char *possible_positions, char *end_position, Boolean co
 		printf(">%d: %s\n", counter + 1, choice);
 	}
 
-	if (computer_turn) 	option = rand() % num_choices;
-	else 				option = prompt_for_end_possition();
-	
-	if (option > 0 && option <= num_choices) {
-		end_position[0] = possible_positions[(option - 1) * 2];
-		end_position[1] = possible_positions[(option - 1) * 2 + 1];
-	}
-}
+	free(choice);
 
-int prompt_for_end_possition() {
-	int choice;
+	int choice_int;
 	printf("%s", "Please input end position:");
-	scanf("%d", &choice);
-	return choice;
+	scanf("%d", &choice_int);
+	return choice_int;
 }
