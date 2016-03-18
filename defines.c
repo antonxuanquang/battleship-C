@@ -1,5 +1,6 @@
 typedef enum {false, true} Boolean;
 
+void begin();
 void create_board(char board[10][10]);
 void create_ship(char board[10][10], Boolean computer_turn);
 void get_coordinate(char *result, int size, Boolean computer_turn);

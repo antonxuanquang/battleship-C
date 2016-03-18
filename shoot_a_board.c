@@ -18,13 +18,13 @@ Boolean shoot_it(char *shoot, char board[10][10]) {
 	if (upper_case(point)) {
 		char character = board[row][column];
 		board[row][column] = (char)(character + 32);
-		printf("%s\n", "HIT??????");
+		printf("%s\n", "is a HIT");
 		return true;
 	} else if (lower_case(point)) {
-		printf("%s\n", "Already HIT");
+		printf("%s\n", ", hmmmm...., it has already  been hit :(");
 	} else {
 		board[row][column] = 'o';
-		printf("%s\n", "MISS");
+		printf("%s\n", "is a MISS");
 	}
 	return false;
 }
@@ -36,7 +36,6 @@ Boolean check_sink(char board[10][10]) {
 	for (row = 0; row < 10; row++) {
 		for (column = 0; column < 10; column++) {
 			char point = board[row][column];
-			printf("%s\n", sum_string);
 			if (point != '.' && point != 'X' && point != 'o'
 				&& !strchr(sum_string, point)
 				&& upper_case(point)) {

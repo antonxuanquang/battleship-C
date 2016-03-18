@@ -22,17 +22,17 @@ void create_ship(char board[10][10], Boolean computer_turn) {
 		
 		letter = type[i];
 		switch (letter) {
-			case 'A': length = 5; break;
-			case 'B': length = 4; break;
-			case 'C': length = 3; break;
-			case 'S': length = 2; break;
-			case 'D': length = 2; break;
+			case 'A': length = 5; if (!computer_turn) printf("You are creating an Aircraft Carrier\n\n"); 	break;		
+			case 'B': length = 4; if (!computer_turn) printf("You are creating a Battleship\n\n"); 			break;
+			case 'C': length = 3; if (!computer_turn) printf("You are creating a Cruiser\n\n"); 			break;
+			case 'S': length = 2; if (!computer_turn) printf("You are creating a Submarine\n\n"); 			break;
+			case 'D': length = 2; if (!computer_turn) printf("You are creating a Destroyer\n\n"); 			break;
 		}
 		do {
 			memset(possible_positions,'\0', 8);
 			memset(end_position, '\0', 2);
+			if (!computer_turn) printf("%s", "Please input a start coordinate: ");
 			get_coordinate(start_position, 2, computer_turn);
-			printf("%s\n", start_position);
 			generate_possible_positions(
 				possible_positions, start_position, length - 1, board);
 			get_end_coordinate(possible_positions, end_position, computer_turn);

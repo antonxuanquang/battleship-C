@@ -10,7 +10,6 @@ void get_coordinate(char *result, int size, Boolean computer_turn) {
 void prompt_for_coordinate(char *result, int size) {
 	char input[20];
 	do {
-		printf("%s", "Please input a coordinate: ");
 		scanf("%s", input);
 	} while (!is_valid(input));
 	strncpy(result, input, size);

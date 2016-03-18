@@ -12,10 +12,8 @@ void get_end_coordinate(char *possible_positions, char *end_position, Boolean co
 	if (computer_turn) 	option = rand() % num_choices;
 	else 				option = prompt_for_end_possition(possible_positions, num_choices);
 	
-	if (option > 0 && option <= num_choices) {
-		end_position[0] = possible_positions[(option - 1) * 2];
-		end_position[1] = possible_positions[(option - 1) * 2 + 1];
-	}
+	end_position[0] = possible_positions[(option - 1) * 2];
+	end_position[1] = possible_positions[(option - 1) * 2 + 1];
 }
 
 int prompt_for_end_possition(char *possible_positions, int num_choices) {
@@ -31,9 +29,11 @@ int prompt_for_end_possition(char *possible_positions, int num_choices) {
 	}
 
 	free(choice);
-
 	int choice_int;
-	printf("%s", "Please input end position:");
-	scanf("%d", &choice_int);
+	do {
+		printf("%s", "Please input end position: ");
+		scanf("%d", &choice_int);
+	} while(choice_int < 0 || choice_int > num_choices);
+	
 	return choice_int;
 }
