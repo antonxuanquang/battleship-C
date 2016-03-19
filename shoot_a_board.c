@@ -18,13 +18,13 @@ Boolean shoot_it(char *shoot, char board[10][10]) {
 	if (upper_case(point)) {
 		char character = board[row][column];
 		board[row][column] = (char)(character + 32);
-		printf("%s\n", "is a HIT");
+		printf("%s\n", " is a HIT");
 		return true;
 	} else if (lower_case(point)) {
 		printf("%s\n", ", hmmmm...., it has already  been hit :(");
 	} else {
 		board[row][column] = 'o';
-		printf("%s\n", "is a MISS");
+		printf("%s\n", " is a MISS");
 	}
 	return false;
 }

@@ -15,13 +15,6 @@ void prompt_for_coordinate(char *result, int size) {
 	strncpy(result, input, size);
 }
 
-void generate_random_input(char *result, int size) {
-	char input[2];
-	input[0] = (char) ((int)'A' + rand()%10);
-	input[1] = (char) ((int)'0' + rand()%10);
-	strncpy(result, input, size);
-}
-
 Boolean is_valid(char *input) {
 	if (strlen(input) == 2) {
 		int first = (int)input[0] - (int)'A';
@@ -35,4 +28,11 @@ Boolean is_valid(char *input) {
 	printf("and a number from 0 to 9\n");
 	printf("Example: B2, J3, G7\n");
 	return false;
+}
+
+void generate_random_input(char *result, int size) {
+	char input[2];
+	input[0] = (char) ((int)'A' + rand()%10);
+	input[1] = (char) ((int)'0' + rand()%10);
+	strncpy(result, input, size);
 }

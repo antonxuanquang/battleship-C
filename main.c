@@ -21,6 +21,8 @@ int main() {
 	char player_board[10][10];
 	char computer_board[10][10];
 	Boolean computer_turn = false;
+
+	
 	Boolean sink = false;
 	char* shoot = malloc(2);
 
